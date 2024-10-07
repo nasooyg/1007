@@ -11,7 +11,7 @@
             width: 100%;
             height: 100%;
             font-family: Arial, sans-serif;
-            background: url('background_video.mp4') no-repeat center center fixed;
+            background: url('/static/background_video.mp4') no-repeat center center fixed;
             background-size: cover;
             color: white;
             display: flex;
@@ -44,7 +44,6 @@
             overflow: hidden;
             z-index: 1;
             text-align: center;
-
             white-space: pre-wrap;
             word-wrap: break-word;
         }
@@ -146,7 +145,7 @@
 
 <!-- 배경 동영상 -->
 <video class="background-video" autoplay loop muted>
-    <source src="background_video.mp4" type="video/mp4">
+    <source src="/static/background_video.mp4" type="video/mp4">
     브라우저가 동영상을 지원하지 않습니다.
 </video>
 
@@ -177,7 +176,6 @@
         chatHistoryDiv.style.display = chatHistoryVisible ? 'block' : 'none';
     }
 
-    // formatResponse 함수 추가
     function formatResponse(message) {
         const maxCharsPerLine = 100;
         let words = message.split(' ');
@@ -235,23 +233,21 @@
     }
 
     function displayBotReply(message) {
-    const chatHistoryContent = document.getElementById('chat-history-content');
-    const botMessageDiv = document.createElement('div');
-    botMessageDiv.textContent = "챗봇: " + message;
-    chatHistoryContent.appendChild(botMessageDiv);
-    chatHistoryContent.scrollTop = chatHistoryContent.scrollHeight;
+        const chatHistoryContent = document.getElementById('chat-history-content');
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.textContent = "챗봇: " + message;
+        chatHistoryContent.appendChild(botMessageDiv);
+        chatHistoryContent.scrollTop = chatHistoryContent.scrollHeight;
 
-    // 타자 효과로 중앙에 챗봇 응답 표시
-    const chatOutputDiv = document.getElementById('chat-output');
-    chatOutputDiv.classList.remove('typing'); // 기존 애니메이션 제거
+        const chatOutputDiv = document.getElementById('chat-output');
+        chatOutputDiv.classList.remove('typing');
 
-    // 브라우저 리플로우를 강제하여 애니메이션이 다시 적용되도록 함
-    void chatOutputDiv.offsetWidth;
+        void chatOutputDiv.offsetWidth;
 
-    chatOutputDiv.innerHTML = ""; // 기존 텍스트 제거
-    chatOutputDiv.textContent = formatResponse(message);
-    chatOutputDiv.classList.add('typing'); // 새로운 타자 애니메이션 적용
-}
+        chatOutputDiv.innerHTML = "";
+        chatOutputDiv.textContent = formatResponse(message);
+        chatOutputDiv.classList.add('typing');
+    }
 
     document.getElementById('chat-input').addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
