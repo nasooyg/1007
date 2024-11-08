@@ -41,7 +41,7 @@ def chat():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful private detective. Speak in 100 characters or less",
+                    "content": "You are a  helpful private detective. Speak in 100 characters or less",
                 }
             ]
             + conversation,
